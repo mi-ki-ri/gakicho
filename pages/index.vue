@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style>
-.container {
+.container-fluid {
   background-color: #aaaaaa;
 }
 .title {
