@@ -36,7 +36,7 @@ export default {
     download() {
       let link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
-      link.download = "test.png";
+      link.download = new Date().getTime() + ".png";
       link.click();
     }
   },
