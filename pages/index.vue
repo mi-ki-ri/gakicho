@@ -66,7 +66,7 @@ export default {
 
 <style>
 .container {
-  background-color: var(--gray);
+  background-color: #aaaaaa;
 }
 .title {
   font-size: 1.5rem;
