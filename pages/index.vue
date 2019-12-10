@@ -15,7 +15,7 @@
     </b-row>
     <b-row>
       <b-col class="inputCol p-2">
-        <b-input class="input" v-model="inputText" @keyup.enter="drawText" />
+        <b-input class="input" v-model="inputText" @keyup.enter="drawText" placeholder="text(push enter)" />
       </b-col>
     </b-row>
   </b-container>
