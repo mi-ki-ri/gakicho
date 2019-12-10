@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container fluid>
     <b-row>
       <b-col></b-col>
       <b-col class="text-center text-light title">Gakicho</b-col>
@@ -58,8 +58,8 @@ export default {
     this.canvas.freeDrawingBrush.color = "#333333";
     this.canvas.freeDrawingBrush.width = 3;
     this.canvas.backgroundColor = "#fcfcfc";
-    this.canvas.setHeight("600");
-    this.canvas.setWidth("800");
+    this.canvas.setHeight("300");
+    this.canvas.setWidth("400");
   }
 };
 </script>
@@ -78,6 +78,6 @@ export default {
   align-items: center;
 }
 .input {
-  width: 800px;
+  width: 400px;
 }
 </style>
