@@ -4,7 +4,8 @@
       <b-col></b-col>
       <b-col class="text-center text-light title">Gakicho</b-col>
       <b-col>
-        <b-button variant="primary" @click="penToggle">Pen</b-button>
+        <b-button variant="info" @click="penToggle">Pen</b-button>
+        <b-button variant="primary" @click="download">DL</b-button>
       </b-col>
     </b-row>
     <b-row>
@@ -29,8 +30,14 @@ export default {
       let text = new fabric.Text(this.inputText, { left: 50, top: 50 });
       this.canvas.add(text);
     },
-    penToggle(){
-      this.canvas.isDrawingMode = ! this.canvas.isDrawingMode
+    penToggle() {
+      this.canvas.isDrawingMode = !this.canvas.isDrawingMode;
+    },
+    download() {
+      let link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "test.png";
+      link.click();
     }
   },
   data() {
@@ -53,24 +60,24 @@ export default {
     this.canvas.backgroundColor = "#fcfcfc";
     this.canvas.setHeight("600");
     this.canvas.setWidth("800");
-
   }
 };
 </script>
 
 <style>
-.container{
-  background-color: var(--gray)
+.container {
+  background-color: var(--gray);
 }
-.title{
+.title {
   font-size: 1.5rem;
 }
-.canvasCol, .inputCol{
+.canvasCol,
+.inputCol {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.input{
+.input {
   width: 800px;
 }
 </style>
