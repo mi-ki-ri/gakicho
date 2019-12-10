@@ -1,72 +1,76 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        gakicho
-      </h1>
-      <h2 class="subtitle">
-        My awesome Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+  <b-container>
+    <b-row>
+      <b-col></b-col>
+      <b-col class="text-center text-light title">Gakicho</b-col>
+      <b-col>
+        <b-button variant="primary" @click="penToggle">Pen</b-button>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="canvasCol p-2">
+        <canvas id="canvas"></canvas>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="inputCol p-2">
+        <b-input class="input" v-model="inputText" @keyup.enter="drawText" />
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import { fabric } from "fabric";
 
 export default {
-  components: {
-    Logo
+  methods: {
+    drawText() {
+      let text = new fabric.Text(this.inputText, { left: 50, top: 50 });
+      this.canvas.add(text);
+    },
+    penToggle(){
+      this.canvas.isDrawingMode = ! this.canvas.isDrawingMode
+    }
+  },
+  data() {
+    return {
+      canvas: null,
+      target: null,
+      inputText: "",
+      isDown: false,
+      x1: 0,
+      y1: 0,
+      x2: 0,
+      y2: 0
+    };
+  },
+  mounted() {
+    this.canvas = new fabric.Canvas("canvas");
+    this.canvas.isDrawingMode = false;
+    this.canvas.freeDrawingBrush.color = "#333333";
+    this.canvas.freeDrawingBrush.width = 3;
+    this.canvas.backgroundColor = "#fcfcfc";
+    this.canvas.setHeight("600");
+    this.canvas.setWidth("800");
+
   }
-}
+};
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+.container{
+  background-color: var(--gray)
+}
+.title{
+  font-size: 1.5rem;
+}
+.canvasCol, .inputCol{
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.input{
+  width: 800px;
 }
 </style>
